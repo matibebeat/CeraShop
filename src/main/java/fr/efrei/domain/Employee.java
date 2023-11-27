@@ -24,7 +24,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Builder{" +
+        return "Employee{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
