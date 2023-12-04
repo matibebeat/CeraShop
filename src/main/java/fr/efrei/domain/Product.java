@@ -4,14 +4,14 @@ public class Product {
     private int id;
     private String description;
     private String size;
-    private int quantity;
+    private String color;
 
     private Product(){
     }
     private Product(Builder builder){
         this.description = builder.description;
         this.id = builder.id;
-        this.quantity = builder.quantity;
+        this.color = builder.color;
         this.size = builder.size;
     }
     public int getId() {
@@ -26,8 +26,8 @@ public class Product {
         return size;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getColor() {
+        return color;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class Product {
                 "Id=" + id +
                 ", description='" + description + '\'' +
                 ", size='" + size + '\'' +
-                ", quantity=" + quantity +
+                ", color=" + color +
                 '}';
     }
 
@@ -44,7 +44,7 @@ public class Product {
         private int id;
         private String description;
         private String size;
-        private int quantity;
+        private String color;
 
         public Builder setId(int id) {
             this.id = id;
@@ -61,8 +61,8 @@ public class Product {
             return this;
         }
 
-        public Builder setQuantity(int quantity) {
-            this.quantity = quantity;
+        public Builder setColor(String color) {
+            this.color = color;
             return this;
         }
 
