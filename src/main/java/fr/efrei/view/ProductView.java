@@ -4,6 +4,8 @@ import fr.efrei.factory.ProductFactory;
 import fr.efrei.domain.Color;
 import fr.efrei.domain.Size;
 import fr.efrei.domain.Product;
+import fr.efrei.domain.Customer;
+import fr.efrei.repository.CustomerRepository;
 import fr.efrei.repository.ProductRepository;
 import fr.efrei.Main;
 import java.util.List;
@@ -207,4 +209,5 @@ public class ProductView {
             System.out.println("No products found.");
         }
     }
+
 }

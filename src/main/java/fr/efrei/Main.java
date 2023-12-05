@@ -2,6 +2,7 @@ package fr.efrei;
 import java.util.Scanner;
 
 import fr.efrei.domain.Role;
+import fr.efrei.repository.ProductRepository;
 import fr.efrei.repository.UserRepository;
 import fr.efrei.view.CustomerView;
 import fr.efrei.view.UserView;
@@ -55,4 +56,6 @@ public class Main {
 
         }
     }
+
+
 }

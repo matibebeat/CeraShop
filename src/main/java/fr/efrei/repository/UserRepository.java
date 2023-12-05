@@ -57,6 +57,14 @@ public class UserRepository implements IUserRepository {
         return success;
     }
 
+    public User findByEmailAndPassword(String email, String password) {
+        User user = userDB.stream()
+                .filter(s -> s.getEmail().equals(email) && s.getPassword().equals(password))
+                .findAny()
+                .orElse(null);
+        return user;
+    }
+
     @Override
     public List<User>getAll() {
         return userDB;
