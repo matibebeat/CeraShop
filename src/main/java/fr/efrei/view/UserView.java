@@ -27,18 +27,20 @@ public class UserView {
             choice = scanner.nextInt();
             switch (choice){
                 case 1:
-                    createUser();
+                    CreateUser();
                     break;
                 case 2:
-                    deleteUser();
+                    DeleteUser();
                     break;
                 case 3:
-                    updateUser();
+                    UpdateUser();
                     break;
                 case 4:
-                    getAllUser();
+                    GetAllUser();
                 case 5:
-                    getUser();
+                    SearchUser();
+                    break;
+                case 6:
                     break;
                 default:
                     System.out.println("Invalid choice");
@@ -66,7 +68,7 @@ public class UserView {
         System.out.println("Welcome " + user.getFirstName() + " " + user.getLastName());
         return user.getRole();
     }
-    public void createUser() {
+    public void CreateUser() {
         System.out.println("----Create User----");
         System.out.print("email: ");
         Scanner scanner = new Scanner(System.in);
@@ -96,7 +98,7 @@ public class UserView {
 
     }
 
-    public void deleteUser() {
+    public void DeleteUser() {
         System.out.println("----Delete User----");
         System.out.print("id: ");
         Scanner scanner = new Scanner(System.in);
@@ -105,7 +107,7 @@ public class UserView {
         userRepository.delete(email);
     }
 
-    public void updateUser(){
+    public void UpdateUser(){
         System.out.println("----wich user do you want to update?----");
         System.out.print("ID: ");
         Scanner scanner = new Scanner(System.in);
@@ -135,12 +137,12 @@ public class UserView {
         userRepository.update(UserFactory.createUser(email, password, roleUser, id, firstName, lastName));
     }
 
-    public void getAllUser(){
+    public void GetAllUser(){
         System.out.println("----All users----");
         userRepository.getAll().forEach(user -> System.out.println(user.toString()));
     }
 
-    public void getUser(){
+    public void SearchUser(){
         System.out.println("----Wich user do you want to see?----");
         System.out.print("ID: ");
         Scanner scanner = new Scanner(System.in);
