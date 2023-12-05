@@ -3,8 +3,8 @@ package fr.efrei.domain;
 public class Product {
     private int id;
     private String description;
-    private String size;
-    private String color;
+    private Size size;
+    private Color color;
 
     private Product(){
     }
@@ -22,11 +22,11 @@ public class Product {
         return description;
     }
 
-    public String getSize() {
+    public Size getSize() {
         return size;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
@@ -43,8 +43,8 @@ public class Product {
     public static class Builder {
         private int id;
         private String description;
-        private String size;
-        private String color;
+        private Size size;
+        private Color color;
 
         public Builder setId(int id) {
             this.id = id;
@@ -56,19 +56,17 @@ public class Product {
             return this;
         }
 
-        public Builder setSize(String size) {
+        public Builder setSize(Size size) {
             this.size = size;
             return this;
         }
 
-        public Builder setColor(String color) {
+        public Builder setColor(Color color) {
             this.color = color;
             return this;
         }
 
-        public Product build() {
-            return new Product(this);
-        }
+        public Product build() {return new Product(this);}
     }
 }
 
