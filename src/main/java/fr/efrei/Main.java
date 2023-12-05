@@ -33,8 +33,9 @@ public class Main {
         System.out.println("1. Manage Products");
         System.out.println("2. Manage Customers");
         if (role == Role.MANAGER) System.out.println("3. Manage Employees");
-        System.out.println("4. Exit");
-        while (choice != 4) {
+        System.out.println("4. Logout");
+        System.out.println("5. Exit");
+        while (choice != 5) {
             choice = scanner.nextInt();
             switch (choice){
                 case 1:
@@ -49,6 +50,9 @@ public class Main {
                 case 4:
                     role = null;
                     MainMenu();
+                    break;
+                case 5:
+                    role = null;
                     break;
                 default:
                     System.out.println("Invalid choice");
