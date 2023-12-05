@@ -49,11 +49,11 @@ public class UserView {
     public Role login() {
         User user = null;
         do {
-            System.out.println("Login");
-            System.out.println("email:");
+            System.out.println("----Login----");
+            System.out.print("email: ");
             Scanner scanner = new Scanner(System.in);
             String email = scanner.nextLine();
-            System.out.println("password:");
+            System.out.print("password: ");
             String password = scanner.nextLine();
 
             user = userRepository.findByEmailAndPassword(email, password);
@@ -67,11 +67,11 @@ public class UserView {
         return user.getRole();
     }
     public void createUser() {
-        System.out.println("Create User");
-        System.out.println("email:");
+        System.out.println("----Create User----");
+        System.out.print("email: ");
         Scanner scanner = new Scanner(System.in);
         String email = scanner.nextLine();
-        System.out.println("password:");
+        System.out.print("password: ");
         String password = scanner.nextLine();
         System.out.println("role: (1. MANAGER, 2. CASHIER)");
         int role = scanner.nextInt();
@@ -86,9 +86,9 @@ public class UserView {
             default:
                 System.out.println("Invalid choice");
         }
-        System.out.println("firstName:");
+        System.out.print("firstName: ");
         String firstName = scanner.nextLine();
-        System.out.println("lastName:");
+        System.out.print("lastName: ");
         String lastName = scanner.nextLine();
 
 
@@ -97,8 +97,8 @@ public class UserView {
     }
 
     public void deleteUser() {
-        System.out.println("Delete User");
-        System.out.println("id:");
+        System.out.println("----Delete User----");
+        System.out.print("id: ");
         Scanner scanner = new Scanner(System.in);
         int email = scanner.nextInt();
 
@@ -106,11 +106,11 @@ public class UserView {
     }
 
     public void updateUser(){
-        System.out.println("wich user do you want to update?");
-        System.out.println("ID:");
+        System.out.println("----wich user do you want to update?----");
+        System.out.print("ID: ");
         Scanner scanner = new Scanner(System.in);
         int id = scanner.nextInt();
-        System.out.println("Password:");
+        System.out.print("Password: ");
         String password = scanner.nextLine();
         System.out.println("Role: (1. MANAGER, 2. CASHIER)");
         int role = scanner.nextInt();
@@ -125,24 +125,24 @@ public class UserView {
             default:
                 System.out.println("Invalid choice");
         }
-        System.out.println("FirstName:");
+        System.out.print("FirstName: ");
         String firstName = scanner.nextLine();
-        System.out.println("LastName:");
+        System.out.print("LastName: ");
         String lastName = scanner.nextLine();
-        System.out.println("Email");
+        System.out.print("Email: ");
         String email = scanner.nextLine();
 
         userRepository.update(UserFactory.createUser(email, password, roleUser, id, firstName, lastName));
     }
 
     public void getAllUser(){
-        System.out.println("All users");
+        System.out.println("----All users----");
         userRepository.getAll().forEach(user -> System.out.println(user.toString()));
     }
 
     public void getUser(){
-        System.out.println("Wich user do you want to see?");
-        System.out.println("ID:");
+        System.out.println("----Wich user do you want to see?----");
+        System.out.print("ID: ");
         Scanner scanner = new Scanner(System.in);
         int id = scanner.nextInt();
         System.out.println(userRepository.read(id).toString());

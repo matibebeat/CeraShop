@@ -56,7 +56,7 @@ public class ProductView {
         do {
             System.out.println("\n\n");
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter product information ");
+            System.out.println("----Enter product information----");
             System.out.print("PRODUCT TYPE\n Enter the corresponding number (1,2,3):\n1: Plate\n2: Bowl\n3: Mug");
             int descindex = scanner.nextInt();
             String description = null;

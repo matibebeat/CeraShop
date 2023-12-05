@@ -48,6 +48,7 @@ public class Main {
                     break;
                 case 4:
                     role = null;
+                    MainMenu();
                     break;
                 default:
                     System.out.println("Invalid choice");
