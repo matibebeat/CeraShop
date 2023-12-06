@@ -57,7 +57,7 @@ public class ProductView {
             System.out.println("\n\n");
             Scanner scanner = new Scanner(System.in);
             System.out.println("----Enter product information----");
-            System.out.print("PRODUCT TYPE\n Enter the corresponding number (1,2,3):\n1: Plate\n2: Bowl\n3: Mug");
+            System.out.print("PRODUCT TYPE\n Enter the corresponding number (1,2,3):\n1: Plate\n2: Bowl\n3: Mug\n");
             int descindex = scanner.nextInt();
             String description = null;
             switch (descindex) {
@@ -69,16 +69,16 @@ public class ProductView {
                     break;
                 case 3:
                     description = "Mug";
-                    return;
+                    break;
             }
-            System.out.print("PRODUCT COLOR\n Enter the corresponding number (1 to 9):\n");
+            System.out.print("PRODUCT COLOR\n Enter the corresponding number (0 to 8):\n");
             for (Color color : Color.values()) {
                 System.out.println(color.ordinal() + ": " + color);
             }
             int colorindex = scanner.nextInt();
             Color selectedcolor = Color.values()[colorindex];
 
-            System.out.print("PRODUCT SIZE\n Enter the corresponding number (1 to 9):\n");
+            System.out.print("PRODUCT SIZE\n Enter the corresponding number (0 to 8):\n");
             for (Size size : Size.values()) {
                 System.out.println(size.ordinal() + ": " + size);
             }
@@ -134,7 +134,7 @@ public class ProductView {
             do {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Update product : ");
-                System.out.print("PRODUCT TYPE\n Enter the corresponding number (1,2,3):\n1: Plate\n2: Bowl\n3: Mug");
+                System.out.print("PRODUCT TYPE\n Enter the corresponding number (1,2,3):\n1: Plate\n2: Bowl\n3: Mug\n");
                 int descindex = scanner.nextInt();
                 String description = null;
                 switch (descindex) {
@@ -146,16 +146,16 @@ public class ProductView {
                         break;
                     case 3:
                         description = "Mug";
-                        return;
+                        break;
                 }
-                System.out.print("PRODUCT COLOR\n Enter the corresponding number (1 to 9):\n");
+                System.out.print("PRODUCT COLOR\n Enter the corresponding number (0 to 8):\n");
                 for (Color color : Color.values()) {
                     System.out.println(color.ordinal() + ": " + color);
                 }
                 int colorindex = scanner.nextInt();
                 Color selectedcolor = Color.values()[colorindex];
 
-                System.out.print("PRODUCT SIZE\n Enter the corresponding number (1 to 9):\n");
+                System.out.print("PRODUCT SIZE\n Enter the corresponding number (0 to 8):\n");
                 for (Size size : Size.values()) {
                     System.out.println(size.ordinal() + ": " + size);
                 }

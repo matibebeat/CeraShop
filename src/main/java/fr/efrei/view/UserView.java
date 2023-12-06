@@ -1,11 +1,15 @@
 package fr.efrei.view;
 
+import fr.efrei.domain.Product;
 import fr.efrei.domain.Role;
 import fr.efrei.domain.User;
 import fr.efrei.Main;
+import fr.efrei.factory.CustomerFactory;
+import fr.efrei.repository.ProductRepository;
 import fr.efrei.repository.UserRepository;
 import fr.efrei.factory.UserFactory;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class UserView {
@@ -21,9 +25,9 @@ public class UserView {
             System.out.println("2. Delete user");
             System.out.println("3. Update user");
             System.out.println("4. Display all users");
-            System.out.println("5. See a user");
-            System.out.println("5. Exit");
-
+            System.out.println("5. Search for a user");
+            System.out.println("6. Exit");
+            System.out.print("Choose an option: ");
             choice = scanner.nextInt();
             switch (choice){
                 case 1:
@@ -37,6 +41,7 @@ public class UserView {
                     break;
                 case 4:
                     GetAllUser();
+                    break;
                 case 5:
                     SearchUser();
                     break;
@@ -45,7 +50,8 @@ public class UserView {
                 default:
                     System.out.println("Invalid choice");
             }
-        }while (choice != 5);
+        }while (choice != 6);
+        Main.MainMenu();
     }
 
     public Role login() {
@@ -87,14 +93,16 @@ public class UserView {
                 break;
             default:
                 System.out.println("Invalid choice");
+                return;
         }
-        System.out.print("firstName: ");
+        scanner.nextLine();
+        System.out.print("FirstName: ");
         String firstName = scanner.nextLine();
-        System.out.print("lastName: ");
+        System.out.print("LastName: ");
         String lastName = scanner.nextLine();
 
 
-        userRepository.create(UserFactory.createUser(email, password, roleUser, 0, firstName, lastName));
+        userRepository.create(UserFactory.createUser(email, password, roleUser, firstName, lastName));
 
     }
 
@@ -107,47 +115,93 @@ public class UserView {
         userRepository.delete(email);
     }
 
-    public void UpdateUser(){
-        System.out.println("----wich user do you want to update?----");
-        System.out.print("ID: ");
-        Scanner scanner = new Scanner(System.in);
-        int id = scanner.nextInt();
-        System.out.print("Password: ");
-        String password = scanner.nextLine();
-        System.out.println("Role: (1. MANAGER, 2. CASHIER)");
-        int role = scanner.nextInt();
-        Role roleUser = null;
-        switch (role){
-            case 1:
-                roleUser = Role.MANAGER;
-                break;
-            case 2:
-                roleUser = Role.CASHIER;
-                break;
-            default:
-                System.out.println("Invalid choice");
+    public static void UpdateUser() {
+        User newUser;
+        int userid;
+        System.out.println("\n\n");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Updating User ");
+        System.out.print("User ID : ");
+        userid = scan.nextInt();
+        UserRepository userRepository = UserRepository.getRepository();
+        User oldUser = userRepository.read(userid);
+        System.out.println(oldUser);
+        if (oldUser != null) {
+            do {
+                Scanner scanner = new Scanner(System.in);
+                System.out.print("email: ");
+                String email = scanner.nextLine();
+                System.out.print("password: ");
+                String password = scanner.nextLine();
+                System.out.println("role: (1. MANAGER, 2. CASHIER)");
+                int role = scanner.nextInt();
+                Role roleUser = null;
+                switch (role){
+                    case 1:
+                        roleUser = Role.MANAGER;
+                        break;
+                    case 2:
+                        roleUser = Role.CASHIER;
+                        break;
+                    default:
+                        System.out.println("Invalid choice");
+                        return;
+                }
+                scanner.nextLine();
+                System.out.print("FirstName: ");
+                String firstName = scanner.nextLine();
+                System.out.print("LastName: ");
+                String lastName = scanner.nextLine();
+
+                newUser = UserFactory.createUser(email, password, roleUser,firstName,lastName);
+
+                if (newUser == null)
+                    System.out.println("Wrong information entered");
+            } while (newUser == null);
+            userRepository.update(newUser);
+            System.out.println("User updated successfully: " + newUser);
+        } else {
+            System.out.println("No user with this ID number exists");
         }
-        System.out.print("FirstName: ");
-        String firstName = scanner.nextLine();
-        System.out.print("LastName: ");
-        String lastName = scanner.nextLine();
-        System.out.print("Email: ");
-        String email = scanner.nextLine();
-
-        userRepository.update(UserFactory.createUser(email, password, roleUser, id, firstName, lastName));
     }
 
-    public void GetAllUser(){
-        System.out.println("----All users----");
-        userRepository.getAll().forEach(user -> System.out.println(user.toString()));
+
+
+    public static void GetAllUser() {
+        UserRepository userRepository = UserRepository.getRepository();
+        List<User> allUsers = userRepository.getAll();
+
+        if (!allUsers.isEmpty()) {
+            System.out.println("All Users:");
+            for (User user : allUsers) {
+                System.out.println(user);
+            }
+        } else {
+            System.out.println("No users found.");
+        }
     }
 
-    public void SearchUser(){
-        System.out.println("----Wich user do you want to see?----");
-        System.out.print("ID: ");
-        Scanner scanner = new Scanner(System.in);
-        int id = scanner.nextInt();
-        System.out.println(userRepository.read(id).toString());
+    public static void SearchUser(){
+        int userid;
+        do {
+            Scanner scan = new Scanner(System.in);
+            System.out.println("\n");
+            System.out.println("Search for a User ");
+            System.out.print("USER ID : ");
+            userid = scan.nextInt();
+            if(userid <= 0)
+                System.out.println("Invalid information");
+
+        } while (userid <= 0);
+
+        UserRepository userRepository = UserRepository.getRepository();
+        User user = userRepository.read(userid);
+
+        if (user != null) {
+            System.out.println("The user is: " + user);
+        } else {
+            System.out.println("No user with this user ID exists");
+        }
     }
 
 
