@@ -16,7 +16,7 @@ public class Main {
 
     public static void main(String[] args) {
         UserRepository UserDb = UserRepository.getRepository();
-        User user = UserFactory.createUser("admin@admin", "1234", Role.MANAGER,1234, "John", "Doe");
+        User user = UserFactory.createUser("admin@admin", "1234", Role.MANAGER, "John", "Doe");
         UserDb.create(user);
         MainMenu();
     }
@@ -57,10 +57,6 @@ public class Main {
                 default:
                     System.out.println("Invalid choice");
             }
-
-
         }
     }
-
-
 }

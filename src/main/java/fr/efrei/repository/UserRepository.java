@@ -37,14 +37,16 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public User update(User newUser){
-        User oldUser = read(newUser.getEmployeeId());
-        if (oldUser == null)
+        User oldUser = read(newUser.getEmployeeId()-1);
+        if (oldUser == null) {
             return null;
-        boolean success = delete(newUser.getEmployeeId());
+        }
+        boolean success = delete(newUser.getEmployeeId()-1);
         if (success){
             boolean successAdded = userDB.add(newUser);
-            if (successAdded)
+            if (successAdded) {
                 return newUser;
+            }
             else return null;
         }
         return null;

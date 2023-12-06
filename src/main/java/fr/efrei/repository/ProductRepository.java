@@ -36,10 +36,10 @@ public class ProductRepository implements IProductRepository {
 
     @Override
     public Product update(Product NewProduct){
-        Product OldProduct = read(NewProduct.getId());
+        Product OldProduct = read(NewProduct.getId()-1);
         if (OldProduct == null)
             return null;
-        boolean success = delete(NewProduct.getId());
+        boolean success = delete(NewProduct.getId()-1);
         if (success){
             boolean successAdded = productDB.add(NewProduct);
             if (successAdded)

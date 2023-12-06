@@ -13,7 +13,7 @@ public class  CustomerView {
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
         do {
-
+            System.out.print("\n\n");
             System.out.println("----Customer Menu----");
             System.out.println("1. Create Customer");
             System.out.println("2. Search for a customer");
@@ -56,10 +56,10 @@ public class  CustomerView {
 
     public void CreateCustomer() {
         System.out.println("---Create Customer---");
-        System.out.println("Name:");
+        System.out.print("Name:");
         Scanner scanner = new Scanner(System.in);
         String name = scanner.nextLine();
-        System.out.println("Phone:");
+        System.out.print("Phone:");
         long phone = scanner.nextLong();
 
         Customer customer = CustomerFactory.createCustomer(phone, name, 0);
@@ -92,7 +92,7 @@ public class  CustomerView {
             System.out.println("\n\n");
             Scanner scanner = new Scanner(System.in);
             System.out.println("---Search for a customer---");
-            System.out.println("Phone:");
+            System.out.print("Phone:");
             phone = scanner.nextLong();
             if (phone <= 0)
                 System.out.println("Invalid information");
@@ -126,10 +126,9 @@ public class  CustomerView {
         Long phone;
         System.out.println("\n\n");
         Scanner scan = new Scanner(System.in);
-        System.out.println("Customer to Update : ");
+        System.out.println("Updating Customer ");
         System.out.print("Customer phone number : ");
         phone = scan.nextLong();
-
         CustomerRepository customerRepository = CustomerRepository.getRepository();
         Customer oldCustomer = customerRepository.read(phone);
         System.out.println(oldCustomer);
@@ -137,9 +136,9 @@ public class  CustomerView {
             do {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Update customer : ");
-                System.out.println("Name: ");
+                System.out.print("Name: ");
                 String name = scanner.nextLine();
-                System.out.print("Purchases");
+                System.out.print("Purchases: ");
                 int purchases = scanner.nextInt();
 
                 newCustomer = CustomerFactory.createCustomer(phone, name, purchases);
@@ -158,7 +157,7 @@ public class  CustomerView {
         Customer newCustomer;
         Long phone;
         Scanner scan = new Scanner(System.in);
-        System.out.println("Enter the customer's phone number:");
+        System.out.print("Enter the customer's phone number:");
         phone = scan.nextLong();
 
         CustomerRepository customerRepository = CustomerRepository.getRepository();
@@ -174,12 +173,12 @@ public class  CustomerView {
                     System.out.println("Wrong information entered");
             } while (newCustomer == null);
             customerRepository.update(newCustomer);
-            System.out.println("Customer purchases updated successfully: " + newCustomer);
+            System.out.println("Customer purchases added: " + newCustomer);
             if (newCustomer.getPurchases() % 5 == 0) {
                 System.out.println("This customer's next purchase will be free!");
             } else {
                 int purchasesleft = 5 - newCustomer.getPurchases() % 5;
-                System.out.println("Only" + purchasesleft + " purchase(s) until this customer's free product!");
+                System.out.println("Only " + purchasesleft + " purchase(s) until this customer's free product!");
             }
         } else {
             System.out.println("No customer with this phone number exists");
